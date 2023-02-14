@@ -36,13 +36,12 @@ const posts = [
     href: "Artigo3.html",
   },
 ];
-var blog = document.getElementById("blog");
-const PostContainer = document.createElement("div");
-blog.appendChild(PostContainer);
-PostContainer.className += " blog-container";
+const wrapper = document.getElementById("blog");
 
 for (var i = 0; i < posts.length; i++) {
-  const postsdata = posts[i];
+  var postsdata = posts[i];
+
+  const PostContainer = document.getElementById("blog-container");
 
   const Postbox = document.createElement("div");
   PostContainer.appendChild(Postbox);
@@ -68,17 +67,19 @@ for (var i = 0; i < posts.length; i++) {
   const PostTitle = document.createElement("a");
   const PostTitleText = document.createTextNode(postsdata.title);
   PostTitle.href = postsdata.href;
-  PostText.appendChild(PostTitle);
-  PostTitle.appendChild(PostTitleText);
   PostTitle.className += "blog-title";
+  PostTitle.appendChild(PostTitleText);
+  PostText.appendChild(PostTitle);
 
   const PostP = document.createElement("p");
   const PostPtext = document.createTextNode(postsdata.content);
-  PostText.appendChild(PostP);
   PostP.appendChild(PostPtext);
+  PostText.appendChild(PostP);
 
   const PostNewA = document.createElement("a");
   const PostNewAtext = document.createTextNode(postsdata.readmore);
-  PostText.appendChild(PostNewA);
   PostNewA.appendChild(PostNewAtext);
+  PostText.appendChild(PostNewA);
+
+  wrapper.appendChild(PostContainer);
 }
